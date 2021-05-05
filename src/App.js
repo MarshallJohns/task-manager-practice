@@ -1,12 +1,14 @@
 import './App.css';
 import Login from './Components/Login/Login'
+import routes from './routes'
+import { withRouter } from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      {routes}
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);

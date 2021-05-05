@@ -4,7 +4,6 @@ function Task(props) {
     return (
         <div>
             Task.js
-            
         </div>
     );
 }
