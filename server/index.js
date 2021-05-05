@@ -4,6 +4,7 @@ const massive = require('massive')
 const app = express()
 const session = require('express-session')
 const userCtrl = require('./Controller/userController')
+const taskCtrl = require('./Controller/taskController')
 
 const { SESSION_SECRET, CONNECTION_STRING, SERVER_PORT } = process.env
 
@@ -15,11 +16,16 @@ app.use(session({
     cookies: { maxAge: 1000 * 60 * 60 * 24 * 365 }
 }))
 
+//* Auth Endpoints
 app.post('/api/user/register', userCtrl.register)
 app.post('/api/user/login', userCtrl.login)
 app.delete('/api/user/logout', userCtrl.logout)
 app.get('api/user/getuser', userCtrl.getUser)
 
+//*Task Endpoints
+app.get('/api/tasks/all', taskCtrl.getTasks)
+app.post('/api/tasks/add', taskCtrl.addTask)
+app.delete('/api/tasks/:taskId', taskCtrl.deleteTask)
 
 massive({
     connectionString: CONNECTION_STRING,
