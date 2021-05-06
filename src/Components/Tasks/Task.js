@@ -3,8 +3,11 @@ import axios from 'axios'
 
 
 function Task(props) {
+    const { task, num } = props
     return (
-        <div>Task.js</div>
+        <li>
+            {`${num}. ${task}`}
+        </li>
     )
 }
 

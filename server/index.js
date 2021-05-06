@@ -20,7 +20,7 @@ app.use(session({
 app.post('/api/user/register', userCtrl.register)
 app.post('/api/user/login', userCtrl.login)
 app.delete('/api/user/logout', userCtrl.logout)
-app.get('api/user/getuser', userCtrl.getUser)
+app.get('/api/user/getuser', userCtrl.getUser)
 
 //*Task Endpoints
 app.get('/api/tasks/all', taskCtrl.getTasks)
