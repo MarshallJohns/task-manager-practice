@@ -21,16 +21,6 @@ function Tasks(props) {
         })
     }, [])
 
-    const mappedTasks = tasks.map((e, i) => {
-        return (
-            <Task
-                key={e.task_id}
-                task={e.task}
-                num={i + 1}
-            />
-
-        )
-    })
     const handleLogout = () => {
         axios.delete('/api/user/logout').then(() => {
             props.logoutUser()
@@ -38,6 +28,23 @@ function Tasks(props) {
         })
     }
 
+    const handleDeleteTask = (id) => {
+        axios.delete(`/api/tasks/${id}`).then(res => {
+            setTasks(res.data)
+        })
+    }
+
+    const mappedTasks = tasks.map((e, i) => {
+        return (
+            <Task
+                key={e.task_id}
+                data={e}
+                num={i + 1}
+                handleDeleteTask={handleDeleteTask}
+            />
+
+        )
+    })
     return (
         <div>
             <div>

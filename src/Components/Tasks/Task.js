@@ -3,10 +3,11 @@ import axios from 'axios'
 
 
 function Task(props) {
-    const { task, num } = props
+    const { data, num, handleDeleteTask } = props
     return (
         <li>
-            {`${num}. ${task}`}
+            {`${num}. ${data.task}`}
+            <button onClick={() => handleDeleteTask(data.task_id)}>Delete</button>
         </li>
     )
 }
