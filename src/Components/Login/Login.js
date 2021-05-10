@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { loginUser } from '../../ducks/authReducer'
 import { connect } from 'react-redux'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+
+
+
 
 
 function Login(props) {
@@ -22,32 +28,24 @@ function Login(props) {
             alert("Please fill out both fields")
         }
     }
-    return <div>
-        <form onSubmit={(e) => handleSubmit(e)}>
-            <label>
-                Email:
-                <input
-                    value={email}
-                    placeholder='example@email.com'
-                    type="text"
-                    onChange={e => setEmail(e.target.value)}
-                />
-            </label>
-            <label>
-                Password:
-                <input
-                    value={password}
-                    placeholder='Enter Password'
-                    type="password"
-                    onChange={e => setPassword(e.target.value)}
-                />
-            </label>
-            <button>Login</button>
-        </form>
+    return <Container className='bg-primary'>
+        <h1>Task Manager</h1>
+        <p>Sign in or create an account to track your tasks you want to accomplish!</p>
+        <Form onSubmit={(e) => handleSubmit(e)}>
+            <Form.Group controlId='formBasicEmail'>
+                <Form.Label> Email Address</Form.Label >
+                <Form.Control onChange={e => setEmail(e.target.value)} type='text' placeholder='Enter Email' />
+            </Form.Group >
+            <Form.Group className='mt-2' controlId='formBasicPassword'>
+                <Form.Label>Password</Form.Label>
+                <Form.Control onChange={e => setPassword(e.target.value)} type='password' placeholder='Enter Password' />
+            </Form.Group>
+            <Button variant='info' className='mt-3 btn btn-primary' type='submit'>Login</Button>
+        </Form >
         <Link to='/register'>
-            <button>Register</button>
+            <Button variant='info' className='mt-4 mb-4'>Register</Button>
         </Link>
-    </div>
+    </Container >
 }
 
 export default connect(null, { loginUser })(Login)
