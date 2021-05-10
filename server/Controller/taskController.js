@@ -8,10 +8,10 @@ module.exports = {
     },
     addTask: async (req, res) => {
         const db = req.app.get('db')
-        const { task } = req.body
+        const { taskInput } = req.body
         const { user_id } = req.session.user
 
-        const tasks = await db.add_task([task, user_id])
+        const tasks = await db.add_task([taskInput, user_id])
         res.status(200).send(tasks)
 
     },

@@ -28,6 +28,15 @@ function Tasks(props) {
         })
     }
 
+    const handleNewTask = (e) => {
+        e.preventDefault()
+        axios.post(`/api/tasks/add`, { taskInput }).then(res => {
+            setTasks(res.data)
+            setTaskInput('')
+        }).catch(err => console.log(err))
+    }
+
+
     const handleDeleteTask = (id) => {
         axios.delete(`/api/tasks/${id}`).then(res => {
             setTasks(res.data)
@@ -49,6 +58,16 @@ function Tasks(props) {
         <div>
             <div>
                 <h1>Hello, {user}</h1>
+                <form onSubmit={(e) => handleNewTask(e)}>
+                    <label htmlFor='newTask'>Want to add a new task?</label>
+                    <input
+                        type="text"
+                        name='newTask'
+                        value={taskInput}
+                        onChange={e => setTaskInput(e.target.value)}
+                    />
+                    <button>Add</button>
+                </form>
                 <ul>
                     {mappedTasks}
                 </ul>
