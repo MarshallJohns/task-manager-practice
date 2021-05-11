@@ -28,7 +28,7 @@ function Login(props) {
             alert("Please fill out both fields")
         }
     }
-    return <Container className='bg-primary'>
+    return <Container className='bg-primary d-flex flex-column'>
         <h1>Task Manager</h1>
         <p>Sign in or create an account to track your tasks you want to accomplish!</p>
         <Form onSubmit={(e) => handleSubmit(e)}>

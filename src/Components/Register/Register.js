@@ -22,9 +22,10 @@ function Register(props) {
     }
     console.log(firstName, email, password)
     return (
-        <Container>
-            <Form onSubmit={e => handleRegister(e)}>
-                <Form.Group className='mt-4'>
+        <Container className='bg-primary w-50'>
+            <h1>Enter the fields below to create an account!</h1>
+            <Form className='p-4' onSubmit={e => handleRegister(e)}>
+                <Form.Group >
                     <Form.Label>First Name</Form.Label>
                     <Form.Control onChange={e => setFirstName(e.target.value)} type='text' placeholder='First name' />
                 </Form.Group>
@@ -36,9 +37,11 @@ function Register(props) {
                     <Form.Label>Password</Form.Label>
                     <Form.Control onChange={e => setPassword(e.target.value)} type='password' placeholder='Password' />
                 </Form.Group>
-                <Button type='submit'>Register</Button>
+                <div className='d-flex justify-content-between mt-4'>
+                    <Button className='btn-info' type='submit'>Register</Button>
+                    <Button onClick={() => props.history.push('/')} className='btn-info'>Back to Login</Button>
+                </div>
             </Form>
-
         </Container>
     );
 }
